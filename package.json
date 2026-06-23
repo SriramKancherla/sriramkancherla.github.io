@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "generate:og": "node scripts/generate-og-image.mjs",
     "sync:documents": "node scripts/sync-documents.mjs",
-    "prebuild": "node scripts/sync-documents.mjs && node scripts/generate-sitemap.mjs",
+    "prebuild": "node scripts/sync-documents.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-og-image.mjs",
     "deploy": "npm run build && npx wrangler pages deploy dist --project-name=sriramkancherla",
     "test": "vitest run",
     "test:watch": "vitest"
