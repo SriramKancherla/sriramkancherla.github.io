@@ -11,7 +11,7 @@ export const ReloadRedirect = () => {
 
     if (!isKnownRoute) {
       if (isPageReload()) {
-        window.location.replace("/");
+        window.location.replace(import.meta.env.BASE_URL);
       }
       return;
     }

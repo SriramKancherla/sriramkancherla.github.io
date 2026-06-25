@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-const DEFAULT_SITE_URL = "https://sriramkancherla.pages.dev";
+const DEFAULT_SITE_URL = "https://sriramkancherla.github.io";
 
 function injectSiteUrl(siteUrl: string) {
   return {
@@ -30,8 +30,10 @@ function injectSiteUrl(siteUrl: string) {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const siteUrl = env.VITE_SITE_URL || "";
+  const base = env.VITE_BASE_PATH || "/";
 
   return {
+    base,
     server: {
       host: "::",
       port: 8080,
