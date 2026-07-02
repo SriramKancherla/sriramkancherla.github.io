@@ -1,24 +1,19 @@
-import { readFileSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const publicDir = join(root, "public");
+const DEFAULT_SITE_URL = "https://sriramkancherla.github.io";
 
-const siteUrl = (process.env.VITE_SITE_URL || "").replace(/\/$/, "");
+const siteUrl = (process.env.VITE_SITE_URL || DEFAULT_SITE_URL).replace(/\/$/, "");
 const routes = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/resume", changefreq: "monthly", priority: "0.8" },
 ];
 
 if (!siteUrl) {
-  console.warn("VITE_SITE_URL not set — skipping sitemap.xml (add to .env before production deploy).");
-  const stale = join(publicDir, "sitemap.xml");
-  if (existsSync(stale)) unlinkSync(stale);
-  const robotsPath = join(publicDir, "robots.txt");
-  const robotsBase = readFileSync(robotsPath, "utf8").replace(/\n*Sitemap:.*\n?/g, "\n").trimEnd();
-  writeFileSync(robotsPath, `${robotsBase}\n`);
-  process.exit(0);
+  console.warn("VITE_SITE_URL not set — using default production URL.");
 }
 const lastmod = new Date().toISOString().slice(0, 10);
 

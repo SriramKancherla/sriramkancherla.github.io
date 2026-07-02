@@ -13,7 +13,7 @@
     "sync:documents": "node scripts/sync-documents.mjs",
     "prebuild": "node scripts/sync-documents.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-og-image.mjs",
     "deploy": "npm run build:gh-pages",
-    "build:gh-pages": "VITE_SITE_URL=https://sriramkancherla.github.io npm run build && cp dist/index.html dist/404.html",
+    "build:gh-pages": "VITE_SITE_URL=https://sriramkancherla.github.io npm run build && cp dist/index.html dist/404.html && touch dist/.nojekyll",
     "deploy:cloudflare": "npm run build && npx wrangler pages deploy dist --project-name=sriramkancherla",
     "test": "vitest run",
     "test:watch": "vitest"
