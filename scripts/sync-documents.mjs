@@ -8,10 +8,6 @@ const outDir = join(root, "public", "documents");
 
 const copies = [
   ["Sriram Kancherla Resume 4.pdf", "sriram-kancherla-resume.pdf"],
-  [
-    "flyrank-internship-confirmation-sriram-kancherla-july-2026-8-weeks.pdf",
-    "flyrank-internship-confirmation.pdf",
-  ],
   ["IITK D&G Professional Certificate.pdf", "iitk-dg-professional-certificate.pdf"],
   ["23BCE0972_OCI_GENAI_PROFESSIONAL.pdf", "oci-genai-professional.pdf"],
   ["Supervised ML - Coursera.pdf", "supervised-ml-coursera.pdf"],

@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://sriramkancherla.github.io/sitemap.xml
+Sitemap: https://sriramkancherla.pages.dev/sitemap.xml

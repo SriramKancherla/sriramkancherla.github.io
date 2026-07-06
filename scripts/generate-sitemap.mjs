@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const publicDir = join(root, "public");
-const DEFAULT_SITE_URL = "https://sriramkancherla.github.io";
+const DEFAULT_SITE_URL = "https://sriramkancherla.pages.dev";
 
 const siteUrl = (process.env.VITE_SITE_URL || DEFAULT_SITE_URL).replace(/\/$/, "");
 const routes = [

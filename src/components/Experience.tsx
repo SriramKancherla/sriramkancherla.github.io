@@ -1,7 +1,7 @@
 import { Briefcase, FileText, MapPin } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionEyebrow } from "./SectionEyebrow";
-import { FLYRANK_CONFIRMATION_URL, NUS_CREDENTIALS_URL } from "@/lib/site";
+import { NUS_CREDENTIALS_URL } from "@/lib/site";
 
 const experiences = [
   {
@@ -12,12 +12,6 @@ const experiences = [
     description:
       "Accepted into the FlyRank AI Internship program as a Machine Learning Engineering Intern. An 8-week program (Jul 1 – Aug 26, 2026) focused on real-world ML engineering workflows, experimentation, and production-grade pipelines.",
     tags: ["Machine Learning", "ML Engineering", "FlyRank AI"],
-    documents: [
-      {
-        label: "Internship Confirmation Letter",
-        href: FLYRANK_CONFIRMATION_URL,
-      },
-    ],
   },
   {
     role: "Academic Intern",
@@ -39,14 +33,14 @@ const experiences = [
 
 export const Experience = () => {
   return (
-    <section id="experience" className="section-fluid fluid-section relative">
-      <div className="container">
+    <section id="experience" className="section-fluid fluid-section pattern-section pattern-section--kolam relative">
+      <div className="container relative z-[1]">
         <Reveal>
           <div className="mb-16 max-w-3xl">
             <SectionEyebrow index="02">Experience</SectionEyebrow>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Where I've been building.</h2>
             <p className="text-lg text-muted-foreground">
-              Academic research at NUS and an upcoming ML engineering internship at FlyRank AI — with verified certificates and confirmation letters.
+              Academic research at NUS and an upcoming ML engineering internship at FlyRank AI — with verified credentials where available.
             </p>
           </div>
         </Reveal>

@@ -13,7 +13,12 @@ dist-ssr
 docs
 *.local
 .env
+.env.*
+!.env.example
 .venv
+
+# Private source documents — synced to public/documents/ at build time only
+personal/
 
 # Editor directories and files
 .vscode/*

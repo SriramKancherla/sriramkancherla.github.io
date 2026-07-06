@@ -11,6 +11,8 @@ import { EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 
 const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined;
 
+const LIMITS = { name: 100, email: 254, subject: 200, message: 5000 } as const;
+
 const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 export const Contact = () => {
@@ -25,6 +27,14 @@ export const Contact = () => {
     const email = (data.get("email") as string).trim();
     const subject = (data.get("subject") as string).trim();
     const message = (data.get("message") as string).trim();
+    const botcheck = (data.get("botcheck") as string).trim();
+
+    if (botcheck) return;
+
+    if (name.length > LIMITS.name || email.length > LIMITS.email || subject.length > LIMITS.subject || message.length > LIMITS.message) {
+      toast.error("Message is too long.", { description: "Please shorten your message and try again." });
+      return;
+    }
 
     if (!email) {
       setEmailError("Email is required.");
@@ -56,6 +66,7 @@ export const Contact = () => {
           message,
           replyto: email,
           from_name: "Portfolio — Sriram Kancherla",
+          botcheck,
         }),
       });
 
@@ -79,8 +90,8 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-fluid fluid-section relative">
-      <div className="container">
+    <section id="contact" className="section-fluid fluid-section pattern-section pattern-section--kolam relative">
+      <div className="container relative z-[1]">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
           <Reveal>
             <div>
@@ -116,6 +127,14 @@ export const Contact = () => {
 
           <Reveal delay={120}>
             <form onSubmit={onSubmit} className="border border-border/70 rounded-lg p-6 md:p-8 space-y-5" noValidate>
+              <input
+                type="text"
+                name="botcheck"
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+                aria-hidden="true"
+              />
               <div className="grid sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name</Label>
