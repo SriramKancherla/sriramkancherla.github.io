@@ -4,7 +4,9 @@ Personal portfolio site built with Vite, React, and Tailwind CSS.
 
 **Live site:** [sriramkancherla.pages.dev](https://sriramkancherla.pages.dev)
 
-## Cloudflare Pages (GitHub deploy)
+`github.io` redirects to Cloudflare Pages via a minimal `docs/` stub (GitHub Pages publishing source).
+
+## Cloudflare Pages (primary host)
 
 Connect this repo in **Cloudflare Dashboard → Workers & Pages → Create → Pages → Connect to Git**.
 
