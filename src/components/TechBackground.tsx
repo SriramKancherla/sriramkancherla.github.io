@@ -73,7 +73,7 @@ export const TechBackground = () => {
           const maxDist = 180 * devicePixelRatio;
           if (dist < maxDist) {
             const alpha = 0.22 * (1 - dist / maxDist);
-            ctx.strokeStyle = `hsla(22, 68%, 55%, ${alpha})`;
+            ctx.strokeStyle = `hsla(185, 62%, 48%, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -85,8 +85,8 @@ export const TechBackground = () => {
 
       nodes.forEach((n) => {
         const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.radius * devicePixelRatio * 3);
-        grad.addColorStop(0, "hsla(22, 72%, 62%, 0.7)");
-        grad.addColorStop(1, "hsla(22, 72%, 62%, 0)");
+        grad.addColorStop(0, "hsla(28, 92%, 58%, 0.65)");
+        grad.addColorStop(1, "hsla(185, 62%, 45%, 0)");
         ctx.fillStyle = grad;
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius * devicePixelRatio, 0, Math.PI * 2);

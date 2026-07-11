@@ -105,8 +105,8 @@ export const Projects = () => {
   const filtered = active === "All" ? projects : projects.filter((p) => p.category.includes(active));
 
   return (
-    <section id="projects" className="section-fluid fluid-section relative">
-      <div className="container max-w-4xl">
+    <section id="projects" className="section-fluid fluid-section pattern-section pattern-section--kolam relative">
+      <div className="container max-w-4xl relative z-[1]">
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
             <div>
@@ -134,7 +134,7 @@ export const Projects = () => {
 
         <div className="divide-y divide-border/70 border-t border-border/70">
           {filtered.map((p, i) => (
-            <Reveal key={p.title} delay={i * 60}>
+            <Reveal key={p.title} delay={i * 70}>
               <article className="py-8 md:py-10">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mono text-xs text-muted-foreground mb-2">
                   <span>{p.period}</span>

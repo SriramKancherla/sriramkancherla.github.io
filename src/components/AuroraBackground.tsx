@@ -1,6 +1,6 @@
-/** Soft mesh blob background — Wall of Portfolios–style, Carbon Copper palette. */
+/** Soft mesh blob background — cinematic teal & orange palette. */
 export const AuroraBackground = () => (
-  <div className="aurora-bg fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+  <div className="aurora-bg absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
     <div className="aurora-bg__base" />
     <div className="aurora-bg__mesh">
       <div className="aurora-bg__orb aurora-bg__orb--1" />

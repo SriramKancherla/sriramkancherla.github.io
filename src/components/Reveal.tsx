@@ -26,8 +26,8 @@ export const Reveal = ({ children, delay = 0, className = "" }: { children: Reac
       className={className}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0) scale(1)" : "translateY(40px) scale(0.98)",
-        transition: `opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+        transform: visible ? "translateY(0) scale(1)" : "translateY(48px) scale(0.97)",
+        transition: `opacity 1s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 1.05s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
         willChange: "opacity, transform",
       }}
     >

@@ -203,8 +203,8 @@ export const Skills = () => {
   const shuffledStack = useMemo(() => shuffleStack(workStack), []);
 
   return (
-    <section id="skills" className="section-fluid fluid-section relative">
-      <div className="container">
+    <section id="skills" className="section-fluid fluid-section pattern-section pattern-section--kolam relative">
+      <div className="container relative z-[1]">
         <Reveal>
           <div className="mb-14 max-w-3xl">
             <SectionEyebrow index="04">Skills</SectionEyebrow>

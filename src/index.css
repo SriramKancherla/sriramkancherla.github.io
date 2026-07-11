@@ -4,57 +4,57 @@
 
 @layer base {
   :root {
-    /* Carbon Copper — dark industrial + copper accent */
-    --background: 25 8% 7%;
-    --foreground: 30 12% 95%;
+    /* Cinematic teal & orange — blockbuster grade */
+    --background: 200 28% 7%;
+    --foreground: 35 20% 96%;
 
-    --card: 25 6% 10%;
-    --card-foreground: 30 12% 95%;
+    --card: 198 22% 10%;
+    --card-foreground: 35 20% 96%;
 
-    --popover: 25 6% 10%;
-    --popover-foreground: 30 12% 95%;
+    --popover: 198 22% 10%;
+    --popover-foreground: 35 20% 96%;
 
-    --primary: 22 68% 55%;
-    --primary-foreground: 25 8% 7%;
-    --primary-glow: 22 72% 62%;
+    --primary: 28 92% 54%;
+    --primary-foreground: 200 28% 7%;
+    --primary-glow: 32 95% 62%;
 
-    --secondary: 25 6% 14%;
-    --secondary-foreground: 30 12% 95%;
+    --secondary: 195 20% 14%;
+    --secondary-foreground: 35 20% 96%;
 
-    --muted: 25 5% 13%;
-    --muted-foreground: 25 6% 54%;
+    --muted: 198 18% 13%;
+    --muted-foreground: 195 12% 58%;
 
-    --accent: 18 50% 40%;
-    --accent-foreground: 30 12% 95%;
+    --accent: 185 62% 42%;
+    --accent-foreground: 35 20% 96%;
 
     --destructive: 0 72% 58%;
-    --destructive-foreground: 30 12% 95%;
+    --destructive-foreground: 35 20% 96%;
 
-    --border: 25 8% 17%;
-    --input: 25 6% 14%;
-    --ring: 22 68% 55%;
+    --border: 195 18% 18%;
+    --input: 195 18% 14%;
+    --ring: 28 92% 54%;
 
     --radius: 0.875rem;
 
-    --gradient-primary: linear-gradient(135deg, hsl(22 68% 55%), hsl(18 50% 40%));
-    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(22 68% 55% / 0.14), transparent 60%);
-    --gradient-card: linear-gradient(135deg, hsl(25 6% 11% / 0.85), hsl(25 8% 7% / 0.65));
-    --shadow-glow: 0 20px 60px -20px hsl(22 68% 55% / 0.24);
-    --shadow-elegant: 0 10px 40px -10px hsl(25 8% 4% / 0.5);
+    --gradient-primary: linear-gradient(135deg, hsl(28 92% 54%), hsl(18 88% 48%));
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(28 92% 54% / 0.16), transparent 62%);
+    --gradient-card: linear-gradient(135deg, hsl(198 22% 11% / 0.88), hsl(200 28% 7% / 0.68));
+    --shadow-glow: 0 20px 60px -20px hsl(28 92% 54% / 0.28);
+    --shadow-elegant: 0 10px 40px -10px hsl(200 28% 4% / 0.55);
 
-    --sidebar-background: 25 8% 7%;
-    --sidebar-foreground: 30 12% 95%;
-    --sidebar-primary: 22 68% 55%;
-    --sidebar-primary-foreground: 25 8% 7%;
-    --sidebar-accent: 25 6% 14%;
-    --sidebar-accent-foreground: 30 12% 95%;
-    --sidebar-border: 25 8% 17%;
-    --sidebar-ring: 22 68% 55%;
+    --sidebar-background: 200 28% 7%;
+    --sidebar-foreground: 35 20% 96%;
+    --sidebar-primary: 28 92% 54%;
+    --sidebar-primary-foreground: 200 28% 7%;
+    --sidebar-accent: 195 20% 14%;
+    --sidebar-accent-foreground: 35 20% 96%;
+    --sidebar-border: 195 18% 18%;
+    --sidebar-ring: 28 92% 54%;
   }
 
   .dark {
-    --background: 25 8% 7%;
-    --foreground: 30 12% 95%;
+    --background: 200 28% 7%;
+    --foreground: 35 20% 96%;
   }
 }
 
@@ -68,6 +68,26 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', system-ui, sans-serif;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    background:
+      linear-gradient(115deg, hsl(185 55% 28% / 0.14) 0%, transparent 42%, hsl(28 90% 52% / 0.1) 100%);
+    mix-blend-mode: soft-light;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 51;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
   }
   h1, h2, h3, h4 {
     font-family: 'Space Grotesk', system-ui, sans-serif;
@@ -212,6 +232,156 @@
   .fluid-glow:hover::before {
     opacity: 1;
   }
+
+  /* ── Cinematic motion ── */
+  .ken-burns {
+    animation: ken-burns 22s ease-in-out infinite alternate;
+  }
+  .ken-burns-reverse {
+    animation: ken-burns-reverse 26s ease-in-out infinite alternate;
+  }
+
+  .cinematic-backdrop__ken {
+    @apply absolute rounded-full;
+    filter: blur(72px);
+  }
+  .cinematic-backdrop__ken--teal {
+    width: 70%;
+    height: 55%;
+    top: -8%;
+    left: -12%;
+    background: radial-gradient(circle, hsl(185 65% 38% / 0.45) 0%, transparent 68%);
+  }
+  .cinematic-backdrop__ken--orange {
+    width: 65%;
+    height: 50%;
+    bottom: -5%;
+    right: -10%;
+    background: radial-gradient(circle, hsl(28 95% 52% / 0.38) 0%, transparent 70%);
+  }
+  .cinematic-backdrop__vignette {
+    @apply absolute inset-0;
+    background: radial-gradient(ellipse 75% 65% at 50% 45%, transparent 25%, hsl(200 28% 7% / 0.75) 100%);
+  }
+
+  /* ── Geometric pattern system ── */
+  .pattern-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.55;
+    mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, black 15%, transparent 72%);
+  }
+
+  .pattern-section--dots::after {
+    background-image: radial-gradient(circle, hsl(var(--primary) / 0.22) 1px, transparent 1px);
+    background-size: 22px 22px;
+    animation: pattern-drift 48s linear infinite;
+  }
+
+  .pattern-section--grid::after {
+    background-image:
+      linear-gradient(hsl(var(--accent) / 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--accent) / 0.12) 1px, transparent 1px);
+    background-size: 48px 48px;
+    animation: pattern-drift 60s linear infinite;
+  }
+
+  .pattern-section--diagonal::after {
+    background-image: repeating-linear-gradient(
+      -42deg,
+      transparent,
+      transparent 14px,
+      hsl(var(--primary) / 0.07) 14px,
+      hsl(var(--primary) / 0.07) 15px
+    );
+    animation: pattern-drift 40s linear infinite;
+  }
+
+  .pattern-section--hex::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 0 L56 16 V48 L28 64 L0 48 V16 Z M28 36 L56 52 V84 L28 100 L0 84 V52 Z' fill='none' stroke='hsl(185 62% 42% / 0.14)' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 56px 100px;
+    animation: pattern-drift 55s linear infinite;
+  }
+
+  .pattern-section--mesh::after {
+    background-image:
+      radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.14) 1px, transparent 1px),
+      linear-gradient(hsl(var(--accent) / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--accent) / 0.06) 1px, transparent 1px);
+    background-size: 24px 24px, 40px 40px, 40px 40px;
+    animation: pattern-drift 50s linear infinite;
+  }
+
+  .pattern-section--scan::after {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      hsl(var(--primary) / 0.05) 3px,
+      hsl(var(--primary) / 0.05) 4px
+    );
+    animation: pattern-scan 12s linear infinite;
+  }
+
+  /* ── Kolam / rangoli (single symmetric tile) ── */
+  .pattern-section--kolam::after {
+    background-image: url("/patterns/kolam.svg");
+    background-size: 64px 64px;
+    opacity: 0.4;
+    animation: pattern-drift 65s linear infinite;
+  }
+
+  .pattern-divider {
+    @apply relative h-14 md:h-16 overflow-hidden opacity-80;
+    mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+  }
+  .pattern-divider--flip {
+    transform: scaleY(-1);
+  }
+  .pattern-divider--dots {
+    background-image: radial-gradient(circle, hsl(var(--primary) / 0.35) 1.5px, transparent 1.5px);
+    background-size: 18px 18px;
+    animation: pattern-drift 30s linear infinite;
+  }
+  .pattern-divider--grid {
+    background-image:
+      linear-gradient(hsl(var(--accent) / 0.2) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--accent) / 0.2) 1px, transparent 1px);
+    background-size: 32px 32px;
+    animation: pattern-drift 36s linear infinite;
+  }
+  .pattern-divider--diagonal {
+    background-image: repeating-linear-gradient(
+      -38deg,
+      transparent,
+      transparent 10px,
+      hsl(var(--primary) / 0.12) 10px,
+      hsl(var(--primary) / 0.12) 11px
+    );
+    animation: pattern-drift 28s linear infinite;
+  }
+  .pattern-divider--hex {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='69' viewBox='0 0 40 69'%3E%3Cpath d='M20 0 L40 11.5 V34.5 L20 46 L0 34.5 V11.5 Z M20 23 L40 34.5 V57.5 L20 69 L0 57.5 V34.5 Z' fill='none' stroke='hsl(28 92% 54% / 0.2)' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 40px 69px;
+    animation: pattern-drift 32s linear infinite;
+  }
+  .pattern-divider--scan {
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 8px,
+      hsl(var(--primary) / 0.15) 8px,
+      hsl(var(--primary) / 0.15) 9px
+    );
+    animation: pattern-scan 8s linear infinite;
+  }
+  .pattern-divider--kolam {
+    background-image: url("/patterns/kolam-border.svg");
+    background-size: 64px 24px;
+    animation: pattern-drift 45s linear infinite;
+  }
 }
 
 @keyframes letter-reveal {
@@ -273,10 +443,10 @@
   animation: fluid-wave-reverse 24s linear infinite;
 }
 
-/* ── Mesh blob background (Carbon Copper) ── */
+/* ── Mesh blob background (cinematic teal & orange) ── */
 .aurora-bg__base {
   @apply absolute inset-0;
-  background: hsl(25 8% 7%);
+  background: hsl(200 28% 7%);
 }
 
 .aurora-bg__mesh {
@@ -294,7 +464,7 @@
   height: min(58vw, 520px);
   top: -12%;
   right: -8%;
-  background: radial-gradient(circle, hsl(22 72% 58% / 0.32) 0%, hsl(22 68% 55% / 0.14) 42%, transparent 72%);
+  background: radial-gradient(circle, hsl(28 95% 55% / 0.34) 0%, hsl(28 92% 54% / 0.14) 42%, transparent 72%);
   animation: mesh-float-1 22s ease-in-out infinite;
 }
 
@@ -303,7 +473,7 @@
   height: min(50vw, 460px);
   top: 8%;
   left: -14%;
-  background: radial-gradient(circle, hsl(35 75% 52% / 0.32) 0%, hsl(28 60% 45% / 0.14) 45%, transparent 70%);
+  background: radial-gradient(circle, hsl(185 62% 42% / 0.36) 0%, hsl(190 55% 35% / 0.14) 45%, transparent 70%);
   animation: mesh-float-2 28s ease-in-out infinite;
 }
 
@@ -312,7 +482,7 @@
   height: min(44vw, 400px);
   top: 42%;
   right: 10%;
-  background: radial-gradient(circle, hsl(18 55% 42% / 0.36) 0%, hsl(18 50% 40% / 0.12) 48%, transparent 72%);
+  background: radial-gradient(circle, hsl(32 90% 50% / 0.32) 0%, hsl(28 85% 45% / 0.12) 48%, transparent 72%);
   animation: mesh-float-3 26s ease-in-out infinite;
 }
 
@@ -321,7 +491,7 @@
   height: min(62vw, 560px);
   bottom: -18%;
   left: 18%;
-  background: radial-gradient(circle, hsl(22 68% 55% / 0.28) 0%, hsl(25 45% 35% / 0.1) 50%, transparent 74%);
+  background: radial-gradient(circle, hsl(185 58% 38% / 0.3) 0%, hsl(195 45% 28% / 0.1) 50%, transparent 74%);
   animation: mesh-float-4 32s ease-in-out infinite;
 }
 
@@ -330,21 +500,46 @@
   height: min(36vw, 320px);
   top: 55%;
   left: 42%;
-  background: radial-gradient(circle, hsl(12 70% 48% / 0.22) 0%, transparent 68%);
+  background: radial-gradient(circle, hsl(22 88% 48% / 0.22) 0%, transparent 68%);
   animation: mesh-float-5 24s ease-in-out infinite;
 }
 
 .aurora-bg__veil {
   @apply absolute inset-0;
   background:
-    radial-gradient(ellipse 80% 55% at 50% 45%, transparent 20%, hsl(25 8% 7% / 0.72) 100%),
-    linear-gradient(180deg, hsl(25 8% 7% / 0.35) 0%, transparent 28%, transparent 72%, hsl(25 8% 7% / 0.5) 100%);
+    radial-gradient(ellipse 80% 55% at 50% 45%, transparent 20%, hsl(200 28% 7% / 0.72) 100%),
+    linear-gradient(180deg, hsl(200 28% 7% / 0.35) 0%, transparent 28%, transparent 72%, hsl(200 28% 7% / 0.5) 100%);
 }
 
 .aurora-bg__noise {
   @apply absolute inset-0 opacity-[0.035];
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
+}
+
+@keyframes ken-burns {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.09) translate(-1.8%, -1.2%); }
+}
+
+@keyframes ken-burns-reverse {
+  0% { transform: scale(1.06) translate(-1%, 0.5%); }
+  100% { transform: scale(1) translate(1.2%, 1%); }
+}
+
+@keyframes pattern-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 120px 80px; }
+}
+
+@keyframes pattern-drift-reverse {
+  0% { background-position: 0 0; }
+  100% { background-position: -64px -64px; }
+}
+
+@keyframes pattern-scan {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 120px; }
 }
 
 @keyframes fluid-marquee {
@@ -382,7 +577,13 @@
   .animate-fluid-wave,
   .animate-fluid-wave-reverse,
   .aurora-bg__orb,
-  .fluid-canvas {
+  .fluid-canvas,
+  .ken-burns,
+  .ken-burns-reverse {
+    animation: none !important;
+  }
+  .pattern-section::after,
+  .pattern-divider {
     animation: none !important;
   }
 }

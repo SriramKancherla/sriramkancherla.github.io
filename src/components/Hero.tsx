@@ -3,6 +3,7 @@ import { ArrowRight, FileText, Mail, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { TechBackground } from "./TechBackground";
+import { CinematicBackdrop } from "./CinematicBackdrop";
 import { NameIntro } from "./NameIntro";
 import { FluidMarquee } from "./FluidMarquee";
 import { LINKEDIN_URL, RESUME_PAGE_PATH, NAME_HERO_TITLE_CLASS, ROLE_LINE, ROLES_LINE } from "@/lib/site";
@@ -28,12 +29,14 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
   }, []);
 
   return (
-    <section id="hero" className="relative z-10 min-h-[100dvh] flex flex-col justify-center pt-24 sm:pt-28 pb-0 overflow-hidden">
+    <section id="hero" className="relative z-10 min-h-[100dvh] flex flex-col justify-center pt-24 sm:pt-28 pb-0 overflow-hidden pattern-section pattern-section--kolam">
       {showIntro && (
         <NameIntro targetRef={titleRef} onComplete={handleIntroComplete} />
       )}
 
-      <div className="absolute inset-0 opacity-25">
+      <CinematicBackdrop />
+
+      <div className="absolute inset-0 opacity-20">
         <TechBackground />
       </div>
 

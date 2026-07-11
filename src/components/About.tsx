@@ -22,8 +22,8 @@ const highlights = [
 
 export const About = () => {
   return (
-    <section id="about" className="section-fluid fluid-section relative">
-      <div className="container">
+    <section id="about" className="section-fluid fluid-section pattern-section pattern-section--kolam relative">
+      <div className="container relative z-[1]">
         <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-10 lg:gap-14 items-start">
           <Reveal>
             <div className="lg:sticky lg:top-28">

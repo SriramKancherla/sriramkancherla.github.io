@@ -9,7 +9,7 @@ import { Certifications } from "@/components/Certifications";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { SiteBackground } from "@/components/SiteBackground";
-import { FluidDivider } from "@/components/FluidDivider";
+import { PatternDivider } from "@/components/PatternDivider";
 
 import { hasIntroCompleted } from "@/lib/intro";
 
@@ -24,17 +24,17 @@ const Index = () => {
         <main>
           <Hero onIntroComplete={() => setIntroDone(true)} />
           <div className={introDone ? undefined : "hidden"} aria-hidden={!introDone}>
-            <FluidDivider />
+            <PatternDivider />
             <About />
-            <FluidDivider flip />
+            <PatternDivider flip />
             <Experience />
-            <FluidDivider />
+            <PatternDivider />
             <Projects />
-            <FluidDivider flip />
+            <PatternDivider flip />
             <Skills />
-            <FluidDivider />
+            <PatternDivider />
             <Certifications />
-            <FluidDivider flip />
+            <PatternDivider flip />
             <Contact />
           </div>
         </main>

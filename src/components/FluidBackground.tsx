@@ -10,7 +10,7 @@ type Blob = {
 };
 
 const BLOB_COUNT = 7;
-const COPPER_HUES = [18, 22, 26, 30, 14, 20, 32];
+const CINEMATIC_HUES = [185, 190, 195, 188, 28, 32, 25];
 
 export const FluidBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -33,7 +33,7 @@ export const FluidBackground = () => {
       vx: (Math.random() - 0.5) * 0.00045,
       vy: (Math.random() - 0.5) * 0.00045,
       radius: 140 + Math.random() * 200,
-      hue: COPPER_HUES[i % COPPER_HUES.length],
+      hue: CINEMATIC_HUES[i % CINEMATIC_HUES.length],
     }));
 
     const onMove = (e: PointerEvent) => {
@@ -81,7 +81,7 @@ export const FluidBackground = () => {
       ctx.globalCompositeOperation = "lighter";
       ctx.filter = "blur(52px)";
 
-      const scrollShift = scrollRef.current * 0.00008;
+      const scrollShift = scrollRef.current * 0.00015;
 
       blobs.forEach((b, i) => {
         if (pointerRef.current.active) {
@@ -115,7 +115,7 @@ export const FluidBackground = () => {
           pointerRef.current.x * w,
           pointerRef.current.y * h,
           160,
-          22,
+          28,
           0.14,
         );
       }
@@ -139,7 +139,7 @@ export const FluidBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fluid-canvas fixed inset-0 w-full h-full pointer-events-none z-[1]"
+      className="fluid-canvas absolute inset-0 w-full h-full pointer-events-none"
       aria-hidden="true"
     />
   );

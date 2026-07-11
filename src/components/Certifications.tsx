@@ -55,8 +55,8 @@ const items = [
 
 export const Certifications = () => {
   return (
-    <section id="certifications" className="section-fluid fluid-section relative">
-      <div className="container max-w-4xl">
+    <section id="certifications" className="section-fluid fluid-section pattern-section pattern-section--kolam relative">
+      <div className="container max-w-4xl relative z-[1]">
         <Reveal>
           <SectionEyebrow index="05">Certifications</SectionEyebrow>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Certifications & achievements.</h2>

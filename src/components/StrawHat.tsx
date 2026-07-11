@@ -4,7 +4,7 @@ type StrawHatProps = {
   landed?: boolean;
 };
 
-/** Luffy-style straw hat — pixel art SVG (no background, works on dark theme). */
+/** Straw hat SVG for the name intro animation. */
 export const StrawHat = ({ className = "", style, landed = false }: StrawHatProps) => (
   <svg
     viewBox="0 0 48 36"

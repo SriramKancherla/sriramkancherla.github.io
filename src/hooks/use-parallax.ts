@@ -1,30 +1,22 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+import { usePrefersReducedMotion } from "./use-prefers-reduced-motion";
 
-export const useParallax = (speed = 0.15) => {
-  const ref = useRef<HTMLDivElement>(null);
+/** Scroll-driven vertical offset for parallax layers. */
+export function useParallax(speed = 0.12) {
+  const reduced = usePrefersReducedMotion();
+  const [offset, setOffset] = useState(0);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    if (reduced) {
+      setOffset(0);
+      return;
+    }
 
-    let raf = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const rect = el.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
-        const offset = (window.innerHeight / 2 - center) * speed;
-        el.style.transform = `translateY(${offset}px)`;
-      });
-    };
-
+    const onScroll = () => setOffset(window.scrollY * speed);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, [speed]);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [speed, reduced]);
 
-  return ref;
-};
+  return reduced ? 0 : offset;
+}
