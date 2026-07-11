@@ -3,6 +3,7 @@ import { AuroraBackground } from "./AuroraBackground";
 import { StrawHat } from "./StrawHat";
 import { prepareHomeIntro } from "@/lib/intro";
 import { NAME_HERO_TITLE_CLASS } from "@/lib/site";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 type Phase = "typing" | "hat" | "hold" | "morph" | "exit";
 
@@ -12,6 +13,7 @@ type NameIntroProps = {
 };
 
 export const NameIntro = ({ targetRef, onComplete }: NameIntroProps) => {
+  const prefersReducedMotion = usePrefersReducedMotion();
   const introRef = useRef<HTMLDivElement>(null);
   const introTitleRef = useRef<HTMLHeadingElement>(null);
   const firstNameRef = useRef<HTMLSpanElement>(null);
@@ -22,6 +24,13 @@ export const NameIntro = ({ targetRef, onComplete }: NameIntroProps) => {
   const [hatLanded, setHatLanded] = useState(false);
   const [hatVisible, setHatVisible] = useState(false);
   const [hatPos, setHatPos] = useState<{ x: number; y: number } | null>(null);
+  const finishedRef = useRef(false);
+
+  const finishIntro = useCallback(() => {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
+    onComplete();
+  }, [onComplete]);
 
   const updateHatPosition = useCallback(() => {
     const first = firstNameRef.current;
@@ -44,6 +53,17 @@ export const NameIntro = ({ targetRef, onComplete }: NameIntroProps) => {
       document.body.style.overflow = "";
     };
   }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      finishIntro();
+    }
+  }, [prefersReducedMotion, finishIntro]);
+
+  useEffect(() => {
+    const safety = setTimeout(finishIntro, 9000);
+    return () => clearTimeout(safety);
+  }, [finishIntro]);
 
   useEffect(() => {
     if (phase !== "typing") return;
@@ -106,7 +126,7 @@ export const NameIntro = ({ targetRef, onComplete }: NameIntroProps) => {
     const introTitle = introTitleRef.current;
     const target = targetRef.current;
     if (!introTitle || !target) {
-      onComplete();
+      finishIntro();
       return;
     }
 
@@ -124,7 +144,7 @@ export const NameIntro = ({ targetRef, onComplete }: NameIntroProps) => {
       transformOrigin: "center center",
       transition: "transform 1.35s cubic-bezier(0.22, 1, 0.36, 1)",
     });
-  }, [targetRef, onComplete]);
+  }, [targetRef, finishIntro]);
 
   useEffect(() => {
     if (phase !== "morph") return;
@@ -138,7 +158,7 @@ export const NameIntro = ({ targetRef, onComplete }: NameIntroProps) => {
     startMorph();
 
     const completeTimer = setTimeout(() => {
-      onComplete();
+      finishIntro();
       setPhase("exit");
       setOverlayOpacity(0);
     }, 1360);
@@ -147,7 +167,7 @@ export const NameIntro = ({ targetRef, onComplete }: NameIntroProps) => {
       cancelAnimationFrame(frame);
       clearTimeout(completeTimer);
     };
-  }, [phase, runMorph, onComplete]);
+  }, [phase, runMorph, finishIntro]);
 
   return (
     <div

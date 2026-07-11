@@ -9,10 +9,18 @@ import { FluidMarquee } from "./FluidMarquee";
 import { LINKEDIN_URL, RESUME_PAGE_PATH, NAME_HERO_TITLE_CLASS, ROLE_LINE, ROLES_LINE } from "@/lib/site";
 import { prepareHomeIntro, hasIntroCompleted, markIntroCompleted } from "@/lib/intro";
 
+function shouldPlayIntro() {
+  if (hasIntroCompleted()) return false;
+  if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return false;
+  }
+  return true;
+}
+
 export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const [introDone, setIntroDone] = useState(() => hasIntroCompleted());
-  const [showIntro, setShowIntro] = useState(() => !hasIntroCompleted());
+  const [introDone, setIntroDone] = useState(() => !shouldPlayIntro());
+  const [showIntro, setShowIntro] = useState(() => shouldPlayIntro());
 
   const handleIntroComplete = useCallback(() => {
     markIntroCompleted();
@@ -23,10 +31,17 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
   }, [onIntroComplete]);
 
   useEffect(() => {
-    return () => {
+    if (!shouldPlayIntro()) {
       markIntroCompleted();
-    };
-  }, []);
+      onIntroComplete?.();
+    }
+  }, [onIntroComplete]);
+
+  useEffect(() => {
+    if (introDone) return;
+    const fallback = setTimeout(handleIntroComplete, 9000);
+    return () => clearTimeout(fallback);
+  }, [introDone, handleIntroComplete]);
 
   return (
     <section id="hero" className="relative z-10 min-h-[100dvh] flex flex-col justify-center pt-24 sm:pt-28 pb-0 overflow-hidden pattern-section pattern-section--kolam">

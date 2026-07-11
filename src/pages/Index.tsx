@@ -13,8 +13,16 @@ import { PatternDivider } from "@/components/PatternDivider";
 
 import { hasIntroCompleted } from "@/lib/intro";
 
+function isIntroDoneInitially() {
+  if (hasIntroCompleted()) return true;
+  if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return true;
+  }
+  return false;
+}
+
 const Index = () => {
-  const [introDone, setIntroDone] = useState(() => hasIntroCompleted());
+  const [introDone, setIntroDone] = useState(() => isIntroDoneInitially());
 
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">

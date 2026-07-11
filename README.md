@@ -4,7 +4,9 @@ Personal portfolio site built with Vite, React, and Tailwind CSS.
 
 **Live site:** [sriramkancherla.pages.dev](https://sriramkancherla.pages.dev)
 
-`github.io` redirects to Cloudflare Pages via a minimal `docs/` stub (GitHub Pages publishing source).
+Also works via GitHub redirect: [sriramkancherla.github.io/portfolio/](https://sriramkancherla.github.io/portfolio/) → Cloudflare.
+
+> **Note:** `sriramkancherla.github.io` (root) returns 404 because the repo is named `portfolio`. Use **pages.dev** or **github.io/portfolio/**.
 
 ## Cloudflare Pages (primary host)
 
