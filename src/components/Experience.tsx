@@ -12,6 +12,7 @@ const experiences = [
     description:
       "Accepted into the FlyRank AI Internship program as a Machine Learning Engineering Intern. An 8-week program (Jul 1 – Aug 26, 2026) focused on real-world ML engineering workflows, experimentation, and production-grade pipelines.",
     tags: ["Machine Learning", "ML Engineering", "FlyRank AI"],
+    documents: [] as { label: string; href: string; external?: boolean }[],
   },
   {
     role: "Academic Intern",
