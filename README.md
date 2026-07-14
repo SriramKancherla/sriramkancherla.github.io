@@ -21,12 +21,14 @@ Connect this repo in **Cloudflare Dashboard → Workers & Pages → Create → P
 
 ### Environment variables (Production)
 
-| Name | Value |
-|------|--------|
-| `VITE_SITE_URL` | `https://sriramkancherla.pages.dev` |
-| `VITE_WEB3FORMS_ACCESS_KEY` | Your Web3Forms key (Encrypt in dashboard) |
+| Name | Value | Notes |
+|------|--------|--------|
+| `VITE_SITE_URL` | `https://sriramkancherla.pages.dev` | Build-time (canonical / OG URLs) |
+| `WEB3FORMS_ACCESS_KEY` | Your Web3Forms key | **Runtime** secret for `/api/contact` — **no** `VITE_` prefix |
 
 After changing env vars, trigger a **Retry deployment** in Cloudflare Pages.
+
+> The contact form calls `/api/contact` (a Pages Function). That function reads `WEB3FORMS_ACCESS_KEY` at request time. If you previously set `VITE_WEB3FORMS_ACCESS_KEY`, replace it with `WEB3FORMS_ACCESS_KEY` and redeploy.
 
 ## Local development
 

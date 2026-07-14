@@ -9,8 +9,6 @@ import { Reveal } from "./Reveal";
 import { SectionEyebrow } from "./SectionEyebrow";
 import { EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 
-const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined;
-
 const LIMITS = { name: 100, email: 254, subject: 200, message: 5000 } as const;
 
 const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -46,31 +44,23 @@ export const Contact = () => {
     }
     setEmailError("");
 
-    if (!WEB3FORMS_ACCESS_KEY) {
-      toast.error("Contact form is not configured yet.", {
-        description: `Please email me directly at ${EMAIL}`,
-      });
-      return;
-    }
-
     setSending(true);
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      // Proxied through Cloudflare Pages Function so the key stays server-side.
+      // Set WEB3FORMS_ACCESS_KEY (no VITE_ prefix) in Cloudflare Pages env vars.
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
           name,
           email,
           subject: subject || "Portfolio contact",
           message,
-          replyto: email,
-          from_name: "Portfolio — Sriram Kancherla",
           botcheck,
         }),
       });
 
-      const result = await res.json();
+      const result = await res.json().catch(() => ({} as { success?: boolean; message?: string }));
 
       if (!res.ok || !result.success) {
         throw new Error(result.message || "Failed to send message.");
@@ -80,10 +70,12 @@ export const Contact = () => {
         description: "Thanks for reaching out — I'll get back to you soon.",
       });
       form.reset();
-    } catch {
-      toast.error("Couldn't send your message.", {
-        description: `Try again or email me at ${EMAIL}`,
-      });
+    } catch (err) {
+      const description =
+        err instanceof Error && err.message.includes("not configured")
+          ? err.message
+          : `Try again or email me at ${EMAIL}`;
+      toast.error("Couldn't send your message.", { description });
     } finally {
       setSending(false);
     }
